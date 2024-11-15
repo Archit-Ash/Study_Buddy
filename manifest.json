@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Study Buddy",
+  "description": "Study Buddy will streamline the process of understanding and making notes",
+  "version": "1.0",
+  "background": {
+    "service_worker": "popup/background.js"
+  },
+  "action": {
+    "default_popup": "popup/hello.html",
+    "default_icon": {
+      "16": "logo/logo_16.png",
+      "48": "logo/logo_48.png",
+      "128": "logo/logo_128.png"
+    }
+  },
+  "commands": {
+    "open_extension": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "mac": "Command+Shift+E"
+      },
+      "description": "Open the extension popup"
+    }
+  }
+}

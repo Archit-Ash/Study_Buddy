@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+html {
+  width: 500px;
+  background-color: #333;
+  color: #007bff;
+}
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 1000; /* Ensures it stays on top of other content */
+}
+
+#nav button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#nav button:hover {
+  background-color: #0056b3;
+}
+
+#content {
+  margin-top: 60px; /* Push content below the fixed navigation bar */
+  padding: 10px;
+}
