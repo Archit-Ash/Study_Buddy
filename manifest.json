@@ -7,13 +7,17 @@
     "service_worker": "popup/background.js"
   },
   "action": {
-    "default_popup": "popup/hello.html",
+    "default_popup": "popup/page1.html",
     "default_icon": {
       "16": "logo/logo_16.png",
       "48": "logo/logo_48.png",
       "128": "logo/logo_128.png"
     }
   },
+  "permissions": ["aiLanguageModelOriginTrial"],
+  "trial_tokens": [
+    "AqbVeQyh0YkvCvFWBCHot7H7NYCRdRbnMIY0NCLrPSA3ipKCdDuG46uUIsJwyZpuaGxbNMAUVpcpi/6V+AiOOQAAAAB4eyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8va2FlYW9pZWRnam1tZmtscGRtY2xoZGFmZGNwZmNvYXAiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElGb3JFeHRlbnNpb24iLCJleHBpcnkiOjE3NjA0ODYzOTl9"
+  ],
   "commands": {
     "open_extension": {
       "suggested_key": {

@@ -1,18 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Page 1</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Topic Explainer</title>
+    <style>
+      html {
+        width: 650px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      #promptInput {
+        width: 80%;
+        max-width: 600px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 15px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #appendOption1 {
+        background-color: #3498db;
+        color: white;
+      }
+      #appendOption2 {
+        background-color: #2ecc71;
+        color: white;
+      }
+      #resetSession {
+        background-color: #e74c3c;
+        color: white;
+      }
+      #loader {
+        display: none;
+        margin: 20px auto;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #poem {
+        margin-top: 20px;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+        word-wrap: break-word;
+      }
+      #sessionStatus {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+      }
+    </style>
   </head>
   <body>
     <header id="nav">
       <button id="toPage1">Page 1</button>
       <button id="toPage2">Page 2</button>
     </header>
-    <div id="content">
-      <h1>This is Page 1</h1>
-      <p>Page 1 content goes here.</p>
+    <h1>AI Topic Explainer</h1>
+    <input
+      id="promptInput"
+      type="text"
+      placeholder="Enter the Name Of the Topic"
+    />
+    <div id="sessionStatus">Initializing session...</div>
+    <div>
+      <button id="appendOption1">Explain to a Kid Mode</button>
+      <button id="appendOption2">Default Mode</button>
+      <button id="resetSession">Reset Session</button>
     </div>
-    <script src="popup.js"></script>
+    <div id="loader"></div>
+
+    <div id="poem"></div>
+
+    <script src="navigator.js"></script>
+    <script src="page1.js"></script>
   </body>
 </html>

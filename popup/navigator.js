@@ -3,5 +3,5 @@ document.getElementById("toPage1").addEventListener("click", () => {
 });
 
 document.getElementById("toPage2").addEventListener("click", () => {
-  window.location.href = "page2.html";
+  window.location.href = "summariser.html";
 });
