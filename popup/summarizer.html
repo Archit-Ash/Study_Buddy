@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Summarizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="nav">
+      <button id="toPage1" class="nav-btn">AI Explainer</button>
+      <button id="toPage2" class="nav-btn-active">Summarizer</button>
+      <button id="toPage3" class="nav-btn">Planner</button>
+    </header>
+    <div class="summarizer">
+      <h1>Text Summarizer</h1>
+      <textarea id="inputText" placeholder="Enter text to summarize"></textarea>
+      <div id="charCount"></div>
+      <button id="summarizeBtn">
+        <span id="buttonText">Summarize</span>
+        <div id="loadingImage" src="https://tenor.com/view/typing-loading-waiting-gif-16752067" style="display: none; width:600px;" ></div>
+
+      </button>
+      <div id="output">
+        <h2>Summary:</h2>
+        <p id="summaryText"></p>
+      </div>
+      <div id="footnote">Powered By Gemini Nano</div>
+      <script src="summarizer.js"></script>
+      <script src="navigator.js"></script>
+    </div>
+  </body>
+</html>

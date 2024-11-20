@@ -3,10 +3,10 @@ document.getElementById("toPage1").addEventListener("click", () => {
 });
 
 document.getElementById("toPage2").addEventListener("click", () => {
-  window.location.href = "summariser.html";
+  window.location.href = "summarizer.html";
 });
 
 
 document.getElementById("toPage3").addEventListener("click", () => {
-  window.location.href = "planner.html";
+  window.location.href = "./planner/planner.html";
 });
