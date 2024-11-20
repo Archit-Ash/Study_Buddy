@@ -191,3 +191,115 @@ html {
 #sessionStatus.green {
   color: green;
 }
+
+
+/* Summarizer styles */
+
+
+.summarizer textarea {
+  width: 600px;
+  max-width: 100%; 
+  padding: 10px 15px; 
+  border: 2px solid #ccc; 
+  border-radius: 8px; 
+  font-size: 16px;
+  line-height: 1.5; 
+  outline: none; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
+  height: 100px;
+  resize: none;
+}
+
+.summarizer textarea:focus {
+  border-color: #009688;
+  box-shadow: 0 4px 8px rgba(0, 150, 136, 0.3); 
+}
+
+.summarizer ::placeholder{
+  text-align: start;
+}
+
+#summarizeBtn {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
+  background: linear-gradient(90deg, #3b6bff, #2e96ff 65%, #acb7ff);
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#summarizeBtn:hover {
+  
+  border-color: #C6C6C6;
+}
+
+.summarizer #output {
+  margin-top: 10px;
+  padding: 0;
+}
+
+.summarizer #summaryText {
+  font-size: 14px;
+  color: #555;
+}
+
+#charCount {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333; 
+  text-align: end;
+}
+
+#charCount.exceed {
+  color: red; 
+}
+
+
+@keyframes expanding {
+  0% {
+      transform: scaleX(0);
+      opacity: 0;
+  }
+  100% {
+      transform: scaleX(1);
+      opacity: 1;
+  }
+}
+
+
+@keyframes moving {
+  0% {
+      background-position: 0 0;
+  }
+  100% {
+      background-position: -200% 0;
+  }
+}
+
+#loadingImage {
+  height: 1.25rem;
+  transform-origin: left; 
+  animation: expanding 0.4s 0.7s forwards linear, moving 1s 1s infinite forwards linear;
+  border-radius: 0.125rem;
+  background-image: linear-gradient(to right, #eff6ff 30%, #2563eb60 60%, #eff6ff);
+  background-size: 200% auto;
+  opacity: 0; 
+  animation-delay: 100ms;
+  z-index: 2;
+  display: inline-block;
+  
+}
+
