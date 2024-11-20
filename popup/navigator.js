@@ -8,5 +8,5 @@ document.getElementById("toPage2").addEventListener("click", () => {
 
 
 document.getElementById("toPage3").addEventListener("click", () => {
-  window.location.href = "./planner/planner.html";
+  window.location.href = "planner.html";
 });

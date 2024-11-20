@@ -5,7 +5,7 @@ async function initializeSession() {
   try {
     console.log("Initializing session...");
     session = await chrome.aiOriginTrial.languageModel.create({
-      systemPrompt: "You are an AI assistant that generates detailed, step-by-step study plans for any topic, tailored to the user's time and proficiency level.",
+      systemPrompt: "You are an AI assistant that generates concise, step-by-step study plans for any topic, tailored to the user's time and proficiency level.",
     });
     sessionReady = true;
     console.log("AI session initialized.");
@@ -14,37 +14,28 @@ async function initializeSession() {
   }
 }
 
-function removeRepetitions(text) {
-  const lines = text.split("\n").map((line) => line.trim());
-  const uniqueLines = [];
-  const seenLines = new Set();
-
-  for (const line of lines) {
-    if (!seenLines.has(line)) {
-      uniqueLines.push(line);
-      seenLines.add(line);
-    }
-  }
-
-  return uniqueLines.join("\n");
-}
-
-function formatOutput(result, proficiency) {
-  const lines = result.split("\n");
+function formatOutput(result) {
+  const lines = result.split("\n").map((line) => line.trim());
   let formatted = "";
+  let currentDay = "";
 
+  
   lines.forEach((line) => {
-    if (line.startsWith("Day")) {
-      formatted += `<h3>${line.trim()}</h3>`;
-    } else if (line.trim()) {
-      if (proficiency === "beginner") {
-        formatted += `<li>${line.trim()}</li>`;
+    if (line.trim()) {
+      if (line.startsWith("Day")) {
+        formatted += `<h4><strong>${line.trim()}</strong></h4>`;
+        currentDay = line.trim();
+        formatted += `<ul class="task-list">`;
+
       } else {
-        formatted += `<p>${line.trim()}</p>`;
+        formatted += `<li class="task-item">${line.trim()}</li>`;
+
       }
     }
+    return formatted;
   });
 
+  // Wrap the list for beginners
   if (proficiency === "beginner") {
     formatted = `<ul>${formatted}</ul>`;
   }
@@ -70,28 +61,30 @@ async function generateStudyPlan() {
   try {
     document.getElementById("loader").style.display = "block";
     const prompt = `
-      Create a detailed study plan for "${topic}". The user has ${timeAvailable} hours available daily and their proficiency level is ${proficiency}. 
-      - For "beginner", provide short and crisp bullet points for each day with unique content.
-      - For "intermediate", provide step-by-step guidance covering subtopics.
-      - For "advanced", provide in-depth analysis and advanced resources. 
+      Generate a concise 5-day study plan for "${topic}". The user has ${timeAvailable} hours available daily and their proficiency level is "${proficiency}". 
+      - For beginners: Provide 1-2 bullet points for each day, keeping it simple and crisp.
+      - For intermediate: Provide slightly detailed guidance but still concise.
+      - For advanced: Include in-depth suggestions but ensure brevity. 
 
-      The plan should span 5 days (or fewer if appropriate), with each day covering a specific subtopic. Include headers for "Day 1", "Day 2", etc., and avoid repeating content. 
-      Format the output clearly and concisely.
+      Each day should be labeled as "Day 1", "Day 2", etc., followed by 1-2 key tasks. Avoid unnecessary repetition and be specific.
     `;
 
     const stream = session.promptStreaming(prompt);
+    const outputElement = document.getElementById("output");
+    outputElement.innerHTML = ""; // Clear previous output
 
     let result = "";
-    const outputElement = document.getElementById("output");
-    outputElement.innerHTML = "";
+    let previousChunks = ""; // This will store previous content to avoid duplication
 
     for await (const chunk of stream) {
-      result += chunk;
+      const newChunk = chunk.startsWith(previousChunks)
+      ? chunk.slice(previousChunks.length)
+      : chunk;
+    result += newChunk;
+    previousChunks = chunk;
+     
+      outputElement.innerHTML += newChunk;
     }
-
-    result = removeRepetitions(result); // Remove repetitions
-    const formattedOutput = formatOutput(result, proficiency);
-    outputElement.innerHTML = formattedOutput;
   } catch (error) {
     document.getElementById("output").textContent =
       "Error generating study plan: " + error.message;

@@ -204,6 +204,7 @@ html {
     background-color: #3e8e41;
   }
   
+  
   /* Responsive Design */
   @media screen and (max-width: 600px) {
     form {
