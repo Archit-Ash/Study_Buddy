@@ -3,6 +3,7 @@
   "name": "Study Buddy",
   "description": "Study Buddy will streamline the process of understanding and making notes",
   "version": "1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoUDhMDC0vcFTwO+Ddh1TgUxRLrGlPMDD9L+WHHsNF9Zr9sStipcgkfZuaC0WezkREFnAxxUy7rid9SOsmt8BmkHhPYWU8IXXzDOJGXN9tNNArUtkespqhveqOz+6CySpUYrzCuqFd58oSm3bZlktAYZK1x0iMhR4/bbkm18cY+8Ze1VdlaeayhqX2RL3BVK5nDiIwP1v5xd1NS17X8HgXslLCTQQX5iaQcH4xGKRUgDSipb+G/kqL/tO0VsMwh3Pu2q5SK0/yQ4JmHX6SAtAfKpQcFNeDBOaLrcRBg3gUvKPg70B67f3+wVdLxZV11zCrBj5+XUzm/pIvJkNz/wlswIDAQAB",
   "background": {
     "service_worker": "popup/background.js"
   },
@@ -16,6 +17,7 @@
   },
   "permissions": ["aiLanguageModelOriginTrial"],
   "trial_tokens": [
+    "ApxIuCJrk91VPMfaqFKZ8DsUngv7yLxGklIGbFlt5bi6tH+in2VdcTCChSY3iIC8WzwAngmbb9XqK357VAkNqAYAAAB4eyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZmllbGpkaWdvbWRvYm1uaWljYWVtbWpqb2prb2FqcGIiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElGb3JFeHRlbnNpb24iLCJleHBpcnkiOjE3NjA0ODYzOTl9",
     "AqbVeQyh0YkvCvFWBCHot7H7NYCRdRbnMIY0NCLrPSA3ipKCdDuG46uUIsJwyZpuaGxbNMAUVpcpi/6V+AiOOQAAAAB4eyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8va2FlYW9pZWRnam1tZmtscGRtY2xoZGFmZGNwZmNvYXAiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElGb3JFeHRlbnNpb24iLCJleHBpcnkiOjE3NjA0ODYzOTl9"
   ],
   "commands": {
