@@ -7,7 +7,7 @@
     "service_worker": "popup/background.js"
   },
   "action": {
-    "default_popup": "popup/page1.html",
+    "default_popup": "popup/Explainor.html",
     "default_icon": {
       "16": "logo/logo_16.png",
       "48": "logo/logo_48.png",
