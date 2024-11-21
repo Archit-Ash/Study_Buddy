@@ -1,5 +1,7 @@
 * {
   cursor: url("../logo/ai.png"), auto; /* Custom cursor image */
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
 }
 html {
   width: 650px;
@@ -26,7 +28,7 @@ html {
 #output {
   margin-top: 20px;
   padding: 20px;
-  width: 80%;
+  width: 95%;
   max-width: 600px;
   word-wrap: break-word;
 }
@@ -65,7 +67,7 @@ html {
   text-align: center;
   display: inline-block;
   position: relative;
-
+  margin-right: 5px;
   /* Apply the gradient to the text */
   background: linear-gradient(to right, rgb(56, 56, 251), turquoise, #ff4f5a);
   -webkit-background-clip: text; /* For webkit browsers (Chrome, Safari, etc.) */
@@ -81,6 +83,7 @@ html {
     turquoise,
     #ff4f5a
   ); /* Gradient background */
+  margin-right: 5px;
   color: white; /* White text color */
   font-weight: bold; /* Optional: make text bold */
   text-align: center;
@@ -214,7 +217,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 /* Default state is red */
 #sessionStatus {
-  color: red;
+  color: green;
 
   padding: 10px;
   transition: background-color 0.3s ease;
@@ -261,8 +264,7 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 100%;
   padding: 10px;
   font-size: 18px;
-  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
-    sans-serif;
+
   background: linear-gradient(90deg, #3b6bff, #2e96ff 65%, #acb7ff);
   border-radius: 8px;
   border: none;

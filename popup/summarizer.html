@@ -14,7 +14,7 @@
       <button id="toPage3" class="nav-btn">Planner</button>
     </header>
     <div class="summarizer">
-      <h1>Text Summarizer</h1>
+      <h1>Topic Summarizer</h1>
       <textarea id="inputText" placeholder="Enter text to summarize"></textarea>
       <div id="charCount"></div>
       <button id="summarizeBtn">
@@ -25,10 +25,14 @@
           style="display: none; width: 600px"
         ></div>
       </button>
+      <button id="copyPlan" class="mode-btn" style="display: none">
+        📋 Copy Summary
+      </button>
       <div id="output">
         <h2>Summary:</h2>
         <p id="summaryText"></p>
       </div>
+
       <div id="footnote">Powered By Gemini Nano</div>
       <script src="summarizer.js"></script>
       <script src="navigator.js"></script>
