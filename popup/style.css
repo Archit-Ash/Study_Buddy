@@ -121,6 +121,22 @@ select {
   /* appearance: none; Remove browser's default styles for select */
 }
 
+/* Add focus effect */
+#topic:focus {
+  border-color: #009688; /* Change border color on focus */
+  box-shadow: 0 4px 8px rgba(0, 150, 136, 0.3); /* Enhanced shadow on focus */
+}
+
+#timeAvailable:focus {
+  border-color: #009688; /* Change border color on focus */
+  box-shadow: 0 4px 8px rgba(0, 150, 136, 0.3); /* Enhanced shadow on focus */
+}
+
+#proficiency:focus {
+  border-color: #009688; /* Change border color on focus */
+  box-shadow: 0 4px 8px rgba(0, 150, 136, 0.3); /* Enhanced shadow on focus */
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
