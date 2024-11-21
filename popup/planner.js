@@ -7,9 +7,11 @@ let currentStream = null; // Reference to the active stream
 async function initializeSession() {
   try {
     console.log("Initializing session...");
-    const capabilities = await chrome.aiOriginTrial.languageModel.capabilities();
+    const capabilities =
+      await chrome.aiOriginTrial.languageModel.capabilities();
     session = await chrome.aiOriginTrial.languageModel.create({
-      systemPrompt: "You are an AI assistant that generates concise, step-by-step study plans for any topic, tailored to the user's time and proficiency level.",
+      systemPrompt:
+        "You are an AI assistant that generates concise, step-by-step study plans for any topic, tailored to the user's time and proficiency level.",
       temperature: Math.max(capabilities.defaultTemperature * 1.2, 2.0),
       topK: capabilities.defaultTopK,
     });
@@ -78,7 +80,7 @@ async function generateStudyPlan() {
     toggleLoader(true);
 
     const prompt = `
-      Generate a concise study plan for "${topic}" in least possible days but not more than 5-days. The user has ${timeAvailable} hours available daily and their proficiency level is "${proficiency}". 
+      Generate a concise study plan for "${topic}" in least possible days . The user has ${timeAvailable} hours available and their proficiency level is "${proficiency}". 
       - For beginners: Provide 1-2 simple bullet points per day.
       - For intermediate: Provide 1-2 detailed tasks per day.
       - For advanced: Provide in-depth tasks per day.
@@ -158,5 +160,50 @@ window.onload = async () => {
 };
 
 // Add event listeners for buttons
-document.getElementById("generatePlan").addEventListener("click", generateStudyPlan);
+document
+  .getElementById("generatePlan")
+  .addEventListener("click", generateStudyPlan);
 document.getElementById("resetSession").addEventListener("click", resetSession);
+
+// Function to copy the generated study plan to the clipboard
+function copyToClipboard() {
+  const outputElement = document.getElementById("output");
+
+  if (!outputElement || outputElement.innerText.trim() === "") {
+    alert("No study plan to copy!");
+    return;
+  }
+
+  navigator.clipboard
+    .writeText(outputElement.innerText)
+    .then(() => {
+      alert("Study plan copied to clipboard!");
+    })
+    .catch((err) => {
+      console.error("Failed to copy text: ", err);
+      alert("Failed to copy study plan.");
+    });
+}
+
+// Show the Copy button when the study plan is generated
+function showCopyButton() {
+  const copyButton = document.getElementById("copyPlan");
+  copyButton.style.display = "inline-block";
+}
+
+// Attach the event listener for the Copy button
+document.getElementById("copyPlan").addEventListener("click", copyToClipboard);
+
+// Listen for changes in the `output` div and show the button when content is generated
+const outputObserver = new MutationObserver(() => {
+  const outputElement = document.getElementById("output");
+  if (outputElement.innerText.trim() !== "") {
+    showCopyButton();
+  }
+});
+
+// Observe the output element for changes
+outputObserver.observe(document.getElementById("output"), {
+  childList: true,
+  subtree: true,
+});

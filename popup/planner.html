@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Planner</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header id="nav">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Planner</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="nav">
       <button id="toPage1" class="nav-btn">AI Explainer</button>
       <button id="toPage2" class="nav-btn">Summarizer</button>
       <button id="toPage3" class="nav-btn-active">Planner</button>
-  </header>
-  <!-- <div class="planner"> -->
-  <h1>Study Planner</h1>
-  <form id="studyForm">
-    <label for="topic">Topic:</label>
-    <input type="text" id="topic" placeholder="Enter the topic (e.g., React.js)" required />
+    </header>
+    <h1>Study Planner</h1>
+    <form id="studyForm">
+      <label for="topic">Topic:</label>
+      <input
+        type="text"
+        id="topic"
+        placeholder="Enter the topic (e.g., React.js)"
+        required
+      />
+      <label for="timeAvailable"
+        >Study Time you want to dedicate (hours per day):</label
+      >
+      <input type="number" id="timeAvailable" placeholder="e.g., 2" required />
+      <label for="proficiency">Your Proficiency:</label>
+      <select id="proficiency">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </form>
+    <div>
+      <button type="button" class="mode-btn" id="generatePlan">
+        Generate Study Plan
+      </button>
+      <button class="redy" id="resetSession">🔄 Reset Session</button>
+    </div>
 
-    <label for="timeAvailable">Study Time you want to dedicate (hours):</label>
-    <input type="number" id="timeAvailable" placeholder="e.g., 2" required />
+    <div id="loader"></div>
+    <button id="copyPlan" class="mode-btn" style="display: none">
+      📋 Copy Plan
+    </button>
+    <div id="output"></div>
 
-    <label for="proficiency">Your Proficiency:</label>
-    <select id="proficiency">
-      <option value="beginner">Beginner</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
-    </select>
-  </form>
-<div>
-  <button type="button" class="mode-btn" id="generatePlan">Generate Study Plan</button>
-  <button class="redy" id="resetSession">🔄 Reset Session</button>
-
-</div>
-   
-  <div id="loader"></div>
-  <div id="output"></div>
-  <div id="footnote">Powered By Gemini Nano</div>
-
-</body>
-<script src="planner.js"></script>
-<script src="navigator.js"></script>
+    <div id="footnote">Powered By Gemini Nano</div>
+    <script src="planner.js"></script>
+    <script src="navigator.js"></script>
+  </body>
 </html>
