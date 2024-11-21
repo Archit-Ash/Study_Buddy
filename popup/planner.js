@@ -63,10 +63,26 @@ async function generateStudyPlan() {
   }
 
   const topic = document.getElementById("topic").value.trim();
-  const timeAvailable = document.getElementById("timeAvailable").value.trim();
+  const timeAvailableInput = document.getElementById("timeAvailable");
+
+  // Ensure the input exists and has a value
+  if (!timeAvailableInput || !timeAvailableInput.value.trim()) {
+    alert("Please enter a valid number of hours.");
+    return;
+  }
+
+  const timeAvailable = parseInt(timeAvailableInput.value.trim(), 10); 
   const proficiency = document.getElementById("proficiency").value;
 
-  if (!topic || !timeAvailable) {
+  
+  // Validate timeAvailable value
+  if (isNaN(timeAvailable) || timeAvailable < 1 || timeAvailable > 24) {
+    alert("Please enter a valid number of hours between 1 and 24.");
+    timeAvailableInput.value = timeAvailable < 1 ? 1 : 24; // Reset to closest valid limit
+    return;
+  }
+
+  if (!topic) {
     alert("Please fill in all fields.");
     return;
   }
@@ -79,13 +95,21 @@ async function generateStudyPlan() {
   try {
     toggleLoader(true);
 
-    const prompt = `
-      Generate a concise study plan for "${topic}" in least possible days . The user has ${timeAvailable} hours available and their proficiency level is "${proficiency}". 
-      - For beginners: Provide 1-2 simple bullet points per day.
-      - For intermediate: Provide 1-2 detailed tasks per day.
-      - For advanced: Provide in-depth tasks per day.
-      Each day should be labeled as "Day 1", "Day 2", etc.
-    `;
+     // Generate a proficiency-specific prompt
+     let prompt = `Generate a concise study plan for "${topic}" in least possible days, given ${timeAvailable} hours daily.`;
+    
+     if (proficiency === "beginner") {
+       prompt += `
+         The user is a beginner. Provide simple and easy-to-follow tasks, 1-2 direct bullet points per day. 
+         Each day should be labeled as "Day 1", "Day 2", etc.`;
+     } else if (proficiency === "intermediate") {
+       prompt += `
+         The user is intermediate. Provide detailed tasks, 1-2 bullet points per day. 
+         Each day should be labeled as "Day 1", "Day 2", etc.`;
+     } else if (proficiency === "advanced") {
+       prompt += `
+         The user is advanced. Provide in-depth, challenging tasks. Each day should be labeled as "Day 1", "Day 2", etc. Provide resources(if available).`;
+     }
 
     currentStream = session.promptStreaming(prompt);
     const outputElement = document.getElementById("output");
