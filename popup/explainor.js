@@ -4,6 +4,10 @@ let userPrompt = ""; // Store the original user prompt
 
 // Display the session status
 const sessionStatus = document.getElementById("sessionStatus");
+document.addEventListener("DOMContentLoaded", function () {
+  // Focus on the input field when the popup is loaded
+  document.getElementById("promptInput").focus();
+});
 
 // Initialize the AI session
 async function initializeSession() {
@@ -234,7 +238,3 @@ function updateSessionStatus(statusText) {
     sessionStatusElement.classList.remove("green"); // Otherwise, keep it red
   }
 }
-
-// Example usage:
-updateSessionStatus("Session initialized successfully."); // This will make it green
-// updateSessionStatus("Initializing session...");  // This will make it red
