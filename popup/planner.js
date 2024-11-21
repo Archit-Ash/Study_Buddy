@@ -25,12 +25,16 @@ function formatOutput(result, proficiency) {
 
   lines.forEach((line) => {
     if (line.trim()) {
-      if (line.startsWith("Day")) {
-        formatted += `<h4><strong>${line.trim()}</strong></h4>`;
+      if (line.startsWith("##")) {
+        formatted += `<h3><strong>${line.slice(3).trim()}</strong></h3>`;
         currentDay = line.trim();
-      } else {
+      }else {
+        const listItem = line.slice(2).trim();
+          const formattedParagraph = listItem
+          .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>") 
+          .replace(/\((.*?)\)/g, "<i>($1)</i>"); 
         // Add each task as a list item
-        formatted += `<li class="task-item">${line.trim()}</li>`;
+        formatted += `<li>${formattedParagraph}</li>`;
       }
     }
   });
@@ -60,12 +64,12 @@ async function generateStudyPlan() {
 
     // Update prompt with proficiency level to ensure different outputs
     const prompt = `
-      Generate a concise 5-day study plan for "${topic}". The user has ${timeAvailable} hours available daily and their proficiency level is "${proficiency}". 
+      Generate a concise study plan for "${topic}" in least possible days but not more than 5-days. The user has ${timeAvailable} hours available daily and their proficiency level is "${proficiency}". 
       - For beginners: Provide 1-2 simple bullet points per day.
       - For intermediate: Provide 1-2 detailed tasks per day.
       - For advanced: Provide in-depth tasks per day.
 
-      Each day should be labeled as "Day 1", "Day 2", etc., followed by 1-2 key tasks. Avoid unnecessary repetition and be specific.
+      Each day should be labeled as "Day 1", "Day 2", etc., followed by 1-2 key tasks but not mention heading as key tasks. Avoid unnecessary repetition and be specific.
     `;
 
     const stream = session.promptStreaming(prompt);

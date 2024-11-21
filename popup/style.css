@@ -87,6 +87,42 @@ html {
   display: inline-block;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px 0px;
+  max-width: 650px;
+  margin: 20px auto;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+}
+
+input, select {
+   /* padding: 10px;  */
+  
+  width: 600px;
+  max-width: 100%; /* Ensures responsiveness on smaller screens */
+  padding: 10px 18px; /* Add some padding for better usability */
+  border: 2px solid #ccc; /* Neutral border color */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Comfortable font size */
+  line-height: 1.5; /* Good line spacing for readability */
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  box-sizing: border-box; /* Ensure consistent sizing */
+  /* appearance: none; Remove browser's default styles for select */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .mode-btn {
   background-color: #e1ecf4;
   border-radius: 3px;
