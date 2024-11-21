@@ -14,31 +14,28 @@ async function initializeSession() {
   }
 }
 
-function formatOutput(result) {
+function formatOutput(result, proficiency) {
   const lines = result.split("\n").map((line) => line.trim());
   let formatted = "";
+  
   let currentDay = "";
 
-  
+  // Create a task list for all proficiency levels
+  formatted += `<ul class="task-list">`; // Open the list for all proficiency levels
+
   lines.forEach((line) => {
     if (line.trim()) {
       if (line.startsWith("Day")) {
         formatted += `<h4><strong>${line.trim()}</strong></h4>`;
         currentDay = line.trim();
-        formatted += `<ul class="task-list">`;
-
       } else {
+        // Add each task as a list item
         formatted += `<li class="task-item">${line.trim()}</li>`;
-
       }
     }
-    return formatted;
   });
 
-  // Wrap the list for beginners
-  if (proficiency === "beginner") {
-    formatted = `<ul>${formatted}</ul>`;
-  }
+  formatted += `</ul>`; // Close the list
 
   return formatted;
 }
@@ -60,11 +57,13 @@ async function generateStudyPlan() {
 
   try {
     document.getElementById("loader").style.display = "block";
+
+    // Update prompt with proficiency level to ensure different outputs
     const prompt = `
       Generate a concise 5-day study plan for "${topic}". The user has ${timeAvailable} hours available daily and their proficiency level is "${proficiency}". 
-      - For beginners: Provide 1-2 bullet points for each day, keeping it simple and crisp.
-      - For intermediate: Provide slightly detailed guidance but still concise.
-      - For advanced: Include in-depth suggestions but ensure brevity. 
+      - For beginners: Provide 1-2 simple bullet points per day.
+      - For intermediate: Provide 1-2 detailed tasks per day.
+      - For advanced: Provide in-depth tasks per day.
 
       Each day should be labeled as "Day 1", "Day 2", etc., followed by 1-2 key tasks. Avoid unnecessary repetition and be specific.
     `;
@@ -76,15 +75,20 @@ async function generateStudyPlan() {
     let result = "";
     let previousChunks = ""; // This will store previous content to avoid duplication
 
+    // Process stream and collect the result progressively
     for await (const chunk of stream) {
       const newChunk = chunk.startsWith(previousChunks)
-      ? chunk.slice(previousChunks.length)
-      : chunk;
-    result += newChunk;
-    previousChunks = chunk;
-     
-      outputElement.innerHTML += newChunk;
+        ? chunk.slice(previousChunks.length)
+        : chunk;
+      
+      // Append the new chunk to the result and display it immediately
+      result += newChunk;
+      outputElement.innerHTML = formatOutput(result, proficiency);
+      
+      // Update the previous chunk for comparison
+      previousChunks = chunk;
     }
+
   } catch (error) {
     document.getElementById("output").textContent =
       "Error generating study plan: " + error.message;

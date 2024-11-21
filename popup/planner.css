@@ -204,6 +204,28 @@ html {
     background-color: #3e8e41;
   }
   
+
+  h1, h2, h3, h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  p {
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
   
   /* Responsive Design */
   @media screen and (max-width: 600px) {
