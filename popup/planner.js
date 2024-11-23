@@ -1,9 +1,8 @@
 let session;
 let sessionReady = false;
-let resetInProgress = false; // Flag to track reset operations
-let currentStream = null; // Reference to the active stream
+let resetInProgress = false;
+let currentStream = null;
 
-// Function to initialize the session
 async function initializeSession() {
   try {
     console.log("Initializing session...");
@@ -23,13 +22,11 @@ async function initializeSession() {
   }
 }
 
-// Utility to show/hide loader
 function toggleLoader(show) {
   const loader = document.getElementById("loader");
   loader.style.display = show ? "block" : "none";
 }
 
-// Function to format the output
 function formatOutput(result) {
   const lines = result.split("\n").map((line) => line.trim());
   let formatted = `<ul class="task-list">`;
@@ -55,7 +52,6 @@ function formatOutput(result) {
   return formatted;
 }
 
-// Function to generate the study plan
 async function generateStudyPlan() {
   if (resetInProgress) {
     alert("Session is resetting. Please wait.");
@@ -65,20 +61,17 @@ async function generateStudyPlan() {
   const topic = document.getElementById("topic").value.trim();
   const timeAvailableInput = document.getElementById("timeAvailable");
 
-  // Ensure the input exists and has a value
   if (!timeAvailableInput || !timeAvailableInput.value.trim()) {
     alert("Please enter a valid number of hours.");
     return;
   }
 
-  const timeAvailable = parseInt(timeAvailableInput.value.trim(), 10); 
+  const timeAvailable = parseInt(timeAvailableInput.value.trim(), 10);
   const proficiency = document.getElementById("proficiency").value;
 
-  
-  // Validate timeAvailable value
   if (isNaN(timeAvailable) || timeAvailable < 1 || timeAvailable > 24) {
     alert("Please enter a valid number of hours between 1 and 24.");
-    timeAvailableInput.value = timeAvailable < 1 ? 1 : 24; // Reset to closest valid limit
+    timeAvailableInput.value = timeAvailable < 1 ? 1 : 24;
     return;
   }
 
@@ -95,25 +88,24 @@ async function generateStudyPlan() {
   try {
     toggleLoader(true);
 
-     // Generate a proficiency-specific prompt
-     let prompt = `Generate a concise study plan for "${topic}" in least possible days, given ${timeAvailable} hours daily.`;
-    
-     if (proficiency === "beginner") {
-       prompt += `
+    let prompt = `Generate a concise study plan for "${topic}" in least possible days, given ${timeAvailable} hours daily.`;
+
+    if (proficiency === "beginner") {
+      prompt += `
          The user is a beginner. Provide simple and easy-to-follow tasks, 1-2 direct bullet points per day. 
          Each day should be labeled as "Day 1", "Day 2", etc.`;
-     } else if (proficiency === "intermediate") {
-       prompt += `
+    } else if (proficiency === "intermediate") {
+      prompt += `
          The user is intermediate. Provide detailed tasks, 1-2 bullet points per day. 
          Each day should be labeled as "Day 1", "Day 2", etc.`;
-     } else if (proficiency === "advanced") {
-       prompt += `
+    } else if (proficiency === "advanced") {
+      prompt += `
          The user is advanced. Provide in-depth, challenging tasks. Each day should be labeled as "Day 1", "Day 2", etc. Provide resources(if available).`;
-     }
+    }
 
     currentStream = session.promptStreaming(prompt);
     const outputElement = document.getElementById("output");
-    outputElement.innerHTML = ""; // Clear previous output
+    outputElement.innerHTML = "";
 
     let result = "";
     let previousChunks = "";
@@ -121,7 +113,7 @@ async function generateStudyPlan() {
     for await (const chunk of currentStream) {
       if (resetInProgress) {
         console.log("Reset in progress. Stopping output generation.");
-        break; // Stop the output generation if the reset is in progress
+        break;
       }
 
       const newChunk = chunk.startsWith(previousChunks)
@@ -142,7 +134,6 @@ async function generateStudyPlan() {
   }
 }
 
-// Function to reset the session and clear inputs
 async function resetSession() {
   if (resetInProgress) {
     alert("Reset already in progress.");
@@ -150,21 +141,17 @@ async function resetSession() {
   }
 
   try {
-    resetInProgress = true; // Lock the reset flag
-    toggleLoader(true); // Show the loader during reset
-
-    // Clear session and reset relevant variables
+    resetInProgress = true;
+    toggleLoader(true);
     session = null;
     sessionReady = false;
     currentStream = null;
 
-    // Clear inputs and output immediately
     document.getElementById("topic").value = "";
     document.getElementById("timeAvailable").value = "";
-    document.getElementById("proficiency").value = "beginner"; // Default selection
+    document.getElementById("proficiency").value = "beginner";
     document.getElementById("output").innerHTML = "";
 
-    // Reinitialize the session
     await initializeSession();
 
     alert("Session reset successfully.");
@@ -172,24 +159,21 @@ async function resetSession() {
     console.error("Error resetting session:", error);
     alert("Failed to reset session.");
   } finally {
-    resetInProgress = false; // Unlock the reset flag
-    toggleLoader(false); // Hide the loader
+    resetInProgress = false;
+    toggleLoader(false);
   }
 }
 
-// Initialize session on page load
 window.onload = async () => {
   console.log("Page loaded. Initializing AI session...");
   await initializeSession();
 };
 
-// Add event listeners for buttons
 document
   .getElementById("generatePlan")
   .addEventListener("click", generateStudyPlan);
 document.getElementById("resetSession").addEventListener("click", resetSession);
 
-// Function to copy the generated study plan to the clipboard
 function copyToClipboard() {
   const outputElement = document.getElementById("output");
 
@@ -209,16 +193,13 @@ function copyToClipboard() {
     });
 }
 
-// Show the Copy button when the study plan is generated
 function showCopyButton() {
   const copyButton = document.getElementById("copyPlan");
   copyButton.style.display = "inline-block";
 }
 
-// Attach the event listener for the Copy button
 document.getElementById("copyPlan").addEventListener("click", copyToClipboard);
 
-// Listen for changes in the `output` div and show the button when content is generated
 const outputObserver = new MutationObserver(() => {
   const outputElement = document.getElementById("output");
   if (outputElement.innerText.trim() !== "") {
@@ -226,7 +207,6 @@ const outputObserver = new MutationObserver(() => {
   }
 });
 
-// Observe the output element for changes
 outputObserver.observe(document.getElementById("output"), {
   childList: true,
   subtree: true,

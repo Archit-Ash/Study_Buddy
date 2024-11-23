@@ -129,16 +129,13 @@ function copyToClipboard() {
     });
 }
 
-// Show the Copy button when the study plan is generated
 function showCopyButton() {
   const copyButton = document.getElementById("copyPlan");
   copyButton.style.display = "inline-block";
 }
 
-// Attach the event listener for the Copy button
 document.getElementById("copyPlan").addEventListener("click", copyToClipboard);
 
-// Listen for changes in the `output` div and show the button when content is generated
 const outputObserver = new MutationObserver(() => {
   const outputElement = document.getElementById("output");
   if (outputElement.innerText.trim() !== "") {
@@ -146,7 +143,6 @@ const outputObserver = new MutationObserver(() => {
   }
 });
 
-// Observe the output element for changes
 outputObserver.observe(document.getElementById("output"), {
   childList: true,
   subtree: true,
