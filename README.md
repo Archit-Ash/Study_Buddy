@@ -24,14 +24,16 @@ Click on *Study Buddy* and start using the extension
 
 # ⚠️IMPORTANT⚠️
 Please ensure the necessary flags are turned on in the browser
+**Warning**: *Experimental features ahead! By enabling these features, you could lose browser data or compromise your security or privacy. Enabled features apply to all users of this browser. If you are an enterprise admin you should not be using these flags in production.*
+
 Make Sure the following flags are set as following
+
 - Enables optimization guide on device -> Enabled BypassPerfRequirement
 - Prompt API for Gemini Nano -> Enabled
 - Summarization API for Gemini Nano -> Enabled
 ![image](https://github.com/user-attachments/assets/2f12f697-11c3-4f48-83b4-ad93b80a5767)
 for detailed instruction regarding flags,visit https://developer.chrome.com/docs/extensions/ai/prompt-api#add_support_to_localhost
 
-**Warning**: *Experimental features ahead! By enabling these features, you could lose browser data or compromise your security or privacy. Enabled features apply to all users of this browser. If you are an enterprise admin you should not be using these flags in production.*
 
  
  For using the Ai explainer and planner ,please make sure that the model is downloaded on your local machine
