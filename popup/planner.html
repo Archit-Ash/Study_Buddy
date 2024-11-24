@@ -7,11 +7,29 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <img class="main-logo" src="../logo//main_logo.png" />
+    <img class="main-logo" src="../logo/main_logo.png" />
     <header id="nav">
-      <button id="toPage1" class="nav-btn">AI Explainer</button>
-      <button id="toPage2" class="nav-btn">Summarizer</button>
-      <button id="toPage3" class="nav-btn-active">Planner</button>
+      <button
+        id="toPage1"
+        class="nav-btn"
+        title="Go to the AI Explainer section for topic breakdowns"
+      >
+        AI Explainer
+      </button>
+      <button
+        id="toPage2"
+        class="nav-btn"
+        title="Switch to the Summarizer to condense long content"
+      >
+        Summarizer
+      </button>
+      <button
+        id="toPage3"
+        class="nav-btn-active"
+        title="You are in the Study Planner section"
+      >
+        Planner
+      </button>
     </header>
     <h1>Study Planner</h1>
     <form id="studyForm">
@@ -21,32 +39,74 @@
         id="topic"
         placeholder="Enter the topic (e.g., React.js)"
         required
+        title="Type the subject or topic you want to study"
       />
       <label for="timeAvailable"
         >Study Time you want to dedicate (hours per day):</label
       >
-      <input type="number" id="timeAvailable" placeholder="e.g., 2" min="1" max="24" required />
+      <input
+        type="number"
+        id="timeAvailable"
+        placeholder="e.g., 2"
+        min="1"
+        max="24"
+        required
+        title="Enter how many hours per day you can dedicate to studying"
+      />
       <label for="proficiency">Your Proficiency:</label>
-      <select id="proficiency">
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
+      <select id="proficiency" title="Choose your current proficiency level">
+        <option
+          value="beginner"
+          title="You're just starting to learn this topic"
+        >
+          Beginner
+        </option>
+        <option
+          value="intermediate"
+          title="You have some knowledge and experience with this topic"
+        >
+          Intermediate
+        </option>
+        <option
+          value="advanced"
+          title="You are highly proficient in this topic and seeking deeper insights"
+        >
+          Advanced
+        </option>
       </select>
     </form>
     <div>
-      <button type="button" class="mode-btn" id="generatePlan">
+      <button
+        type="button"
+        class="mode-btn"
+        id="generatePlan"
+        title="Click to generate a study plan based on your input"
+      >
         Generate Study Plan
       </button>
-      <button class="redy" id="resetSession">🔄 Reset Session</button>
+      <button
+        class="redy"
+        id="resetSession"
+        title="Click to reset the form and start fresh"
+      >
+        🔄 Reset Session
+      </button>
     </div>
 
     <div id="loader"></div>
-    <button id="copyPlan" class="mode-btn" style="display: none">
+    <button
+      id="copyPlan"
+      class="mode-btn"
+      style="display: none"
+      title="Copy the generated study plan to your clipboard"
+    >
       📋 Copy Plan
     </button>
     <div id="output"></div>
 
-    <div id="footnote">Powered By Gemini Nano</div>
+    <div id="footnote" title="Powered by Gemini Nano AI">
+      Powered By Gemini Nano
+    </div>
     <script src="planner.js"></script>
     <script src="navigator.js"></script>
   </body>

@@ -7,32 +7,75 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <img class="main-logo" src="../logo//main_logo.png" />
+    <img class="main-logo" src="../logo/main_logo.png" />
     <header id="nav">
-      <button id="toPage1" class="nav-btn-active">AI Explainer</button>
-      <button id="toPage2" class="nav-btn">Summarizer</button>
-      <button id="toPage3" class="nav-btn">Planner</button>
+      <button
+        id="toPage1"
+        class="nav-btn-active"
+        title="You are currently in the AI Topic Explainer section"
+      >
+        AI Explainer
+      </button>
+      <button
+        id="toPage2"
+        class="nav-btn"
+        title="Switch to the Summarizer to condense long content"
+      >
+        Summarizer
+      </button>
+      <button
+        id="toPage3"
+        class="nav-btn"
+        title="Go to the Study Planner section to plan your study"
+      >
+        Planner
+      </button>
     </header>
     <h1>AI Topic Explainer</h1>
     <input
       id="promptInput"
       type="text"
       placeholder="Enter the Name Of the Topic"
+      title="Enter the topic you want to learn about"
     />
     <div id="sessionStatus">Initializing session...</div>
     <div>
-      <button class="mode-btn" id="appendOption2">🔍 Quick Search</button>
-      <button class="mode-btn" id="appendOption3">⚙️ Concise Mode</button>
-      <button class="mode-btn" id="appendOption1">
+      <button
+        class="mode-btn"
+        id="appendOption2"
+        title="Quick Search provides concise answers for a fast overview of the topic"
+      >
+        🔍 Quick Search
+      </button>
+      <button
+        class="mode-btn"
+        id="appendOption3"
+        title="Concise Mode gives a detailed explanation for a deeper understanding"
+      >
+        ⚙️ Concise Mode
+      </button>
+      <button
+        class="mode-btn"
+        id="appendOption1"
+        title="Explain to a Kid Mode simplifies the topic for younger audiences or beginners"
+      >
         👶 Explain to a Kid Mode
       </button>
 
-      <button class="redy" id="resetSession">🔄 Reset Session</button>
+      <button
+        class="redy"
+        id="resetSession"
+        title="Click to reset the session and start over"
+      >
+        🔄 Reset Session
+      </button>
     </div>
     <div id="loader"></div>
 
     <div id="output"></div>
-    <div id="footnote">Powered By Gemini Nano</div>
+    <div id="footnote" title="Powered by Gemini Nano AI">
+      Powered By Gemini Nano
+    </div>
     <script src="navigator.js"></script>
     <script src="explainor.js"></script>
   </body>

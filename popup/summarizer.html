@@ -7,33 +7,69 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <img class="main-logo" src="../logo//main_logo.png" />
+    <img class="main-logo" src="../logo/main_logo.png" />
     <header id="nav">
-      <button id="toPage1" class="nav-btn">AI Explainer</button>
-      <button id="toPage2" class="nav-btn-active">Summarizer</button>
-      <button id="toPage3" class="nav-btn">Planner</button>
+      <button
+        id="toPage1"
+        class="nav-btn"
+        title="Go to the AI Explainer section for topic breakdowns"
+      >
+        AI Explainer
+      </button>
+      <button
+        id="toPage2"
+        class="nav-btn-active"
+        title="You are currently in the Summarizer section"
+      >
+        Summarizer
+      </button>
+      <button
+        id="toPage3"
+        class="nav-btn"
+        title="Go to the Study Planner section to plan your study"
+      >
+        Planner
+      </button>
     </header>
     <div class="summarizer">
       <h1>Topic Summarizer</h1>
-      <textarea id="inputText" placeholder="Enter text to summarize"></textarea>
-      <div id="charCount"></div>
-      <button id="summarizeBtn">
+      <textarea
+        id="inputText"
+        placeholder="Enter text to summarize"
+        title="Enter the text you want to summarize here"
+      ></textarea>
+      <div
+        id="charCount"
+        title="Displays the character count of the entered text"
+      ></div>
+      <button id="summarizeBtn" title="Click to summarize the entered text">
         <span id="buttonText">Summarize</span>
         <div
           id="loadingImage"
           src="https://tenor.com/view/typing-loading-waiting-gif-16752067"
           style="display: none; width: 600px"
+          title="Loading, please wait..."
         ></div>
       </button>
-      <button id="copyPlan" class="mode-btn" style="display: none">
+      <button
+        id="copyPlan"
+        class="mode-btn"
+        style="display: none"
+        title="Click to copy the summarized text"
+      >
         📋 Copy Summary
       </button>
       <div id="output">
         <h2>Summary:</h2>
-        <p id="summaryText"></p>
+        <p
+          id="summaryText"
+          title="This is the summarized version of your text"
+        ></p>
       </div>
 
-      <div id="footnote">Powered By Gemini Nano</div>
+      <div id="footnote" title="Powered by Gemini Nano AI">
+        Powered By Gemini Nano
+      </div>
       <script src="summarizer.js"></script>
       <script src="navigator.js"></script>
     </div>
