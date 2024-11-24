@@ -22,7 +22,7 @@ click on the *puzzle* shaped button and access the extension menu
 Click on *Study Buddy* and start using the extension
 ![image](https://github.com/user-attachments/assets/c16b636e-e65e-41cc-8198-a357af0c558b)
 
-# IMPORTANT
+# ⚠️IMPORTANT⚠️
 Please ensure the necessary flags are turned on in the browser
 Make Sure the following flags are set as following
 - Enables optimization guide on device -> Enabled BypassPerfRequirement
