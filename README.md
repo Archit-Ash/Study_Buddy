@@ -23,7 +23,7 @@ Click on *Study Buddy* and start using the extension
 ![image](https://github.com/user-attachments/assets/c16b636e-e65e-41cc-8198-a357af0c558b)
 
 # ⚠️IMPORTANT⚠️
-Please ensure the necessary flags are turned on in the browser
+Please ensure the necessary flags are turned on in the browser\
 **Warning**: *Experimental features ahead! By enabling these features, you could lose browser data or compromise your security or privacy. Enabled features apply to all users of this browser. If you are an enterprise admin you should not be using these flags in production.*
 
 Make Sure the following flags are set as following
